@@ -19,4 +19,4 @@ mise en place du systeme de changement de page et de sauvegarde de valeur
 tentative de correction d'un bug sauvegardant les page les unes dans les autres
 ### 04.03.2026
 correction du bug du 2 fevrier en changeant ce qui cause l'evenement pour que le changement du texte fait par le code ne declanche plus l'evenement
-debut de l'ajoue de la fonctionnalité de choix de position sur la trame DMX
+
