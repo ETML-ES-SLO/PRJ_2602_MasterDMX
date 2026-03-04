@@ -1,5 +1,5 @@
-#Projet 2602 MasterDMX Interface
-##journal de travail
+# Projet 2602 MasterDMX Interface
+## journal de travail
 ### 04.02.2026
 debut du projet, creation des differentes documentations relatives au projet
 creation du projet Visual studio 
