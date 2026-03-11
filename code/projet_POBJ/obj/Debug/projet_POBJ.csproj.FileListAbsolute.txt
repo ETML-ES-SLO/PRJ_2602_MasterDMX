@@ -1,0 +1,11 @@
+C:\BSH\POBJ\projet_POBJ\bin\Debug\projet_POBJ.exe.config
+C:\BSH\POBJ\projet_POBJ\bin\Debug\projet_POBJ.exe
+C:\BSH\POBJ\projet_POBJ\bin\Debug\projet_POBJ.pdb
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.csproj.AssemblyReference.cache
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.csproj.SuggestedBindingRedirects.cache
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.Properties.Resources.resources
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.csproj.GenerateResource.cache
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.csproj.CoreCompileInputs.cache
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.exe
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.pdb
+C:\BSH\POBJ\projet_POBJ\obj\Debug\projet_POBJ.Form1.resources
