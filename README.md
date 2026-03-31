@@ -52,7 +52,7 @@ Ce projet supporte les interfaces suivantes :
 ### Enttec Open DMX USB
 - Interface simple
 - Pas de buffer interne
-- Timing géré par le logiciel
+- Timing géré par le logiciel (windows)
 - Moins stable
 
 ### Enttec DMX USB Pro
