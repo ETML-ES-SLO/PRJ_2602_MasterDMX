@@ -83,7 +83,9 @@ Ce projet supporte les interfaces suivantes :
 ### Mesure DMX
 #### Schema de mesure
 #### Premiere mesure
- ![plot](./Mesure/Mesure_DMX.png) 
+| Mesure DMX USB PRO | mesure OPEN DMX   |
+|------|-------------|--|
+| ![plot](./Mesure/Mesure_DMX.png) | ![plot](./Mesure/Mesure_OPEN_DMX.png)|
 | premiere page | deuxieme page     |
 |------|-------------|
 | ![plot](./Mesure/image_terminal_1.png)   | ![plot](./Mesure/image_terminal_2.png)    |
