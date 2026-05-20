@@ -78,11 +78,26 @@ Ce projet supporte les interfaces suivantes :
 
 - Communication USB (Open DMX) :
 
-## Versioning
+## Validation du code
 
-- Système : **Git**
-
-### Stratégie de branches :
-- `main` → version stable
-- `BSH` → développement
+### Mesure DMX
+#### Schema de mesure
+#### Premiere mesure
+ ![plot](./Mesure/Mesure_DMX.png) 
+| premiere page | deuxieme page     |
+|------|-------------|
+| ![plot](./Mesure/image_terminal_1.png)   | ![plot](./Mesure/image_terminal_2.png)    |
+#### Remarque
+comme on peut le voir, les trames presentes sur l'oscilloscope sont bien correct
+| valeur attendu (binaire) | valeur que l'on obtient (binaire) | channel |
+|------|-------------|--|
+|0b0000 0000|0b0000 0000|0|
+| 0b1111 1111  | 0b1111 1111 |1|
+| 0b0101 0101  | 0b0101 0101 |2|
+| 0b0000 0000  | 0b0000 0000 |3|
+| 0b0101 0101  | 0b0101 0101 |4|
+| 0b0000 0000  | 0b0000 0000 |5|
+| 0b1111 1111  | 0b1111 1111 |6|
+| 0b0000 0000  | 0b0000 0000 |7|
+| 0b0000 0000  | 0b0000 0000 |8|
 
