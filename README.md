@@ -84,13 +84,16 @@ Ce projet supporte les interfaces suivantes :
 #### Schema de mesure
 #### Premiere mesure
 | Mesure DMX USB PRO | mesure OPEN DMX   |
-|------|-------------|--|
+|------|-------------|
 | ![plot](./Mesure/Mesure_DMX.png) | ![plot](./Mesure/Mesure_OPEN_DMX.png)|
+
+
 | premiere page | deuxieme page     |
 |------|-------------|
 | ![plot](./Mesure/image_terminal_1.png)   | ![plot](./Mesure/image_terminal_2.png)    |
 #### Remarque
 comme on peut le voir, les trames presentes sur l'oscilloscope sont bien correct
+||DMX USB PRO||
 | valeur attendu (binaire) | valeur que l'on obtient (binaire) | channel |
 |------|-------------|--|
 |0b0000 0000|0b0000 0000|0|
@@ -102,4 +105,22 @@ comme on peut le voir, les trames presentes sur l'oscilloscope sont bien correct
 | 0b1111 1111  | 0b1111 1111 |6|
 | 0b0000 0000  | 0b0000 0000 |7|
 | 0b0000 0000  | 0b0000 0000 |8|
+
+||OPEN DMX||
+| valeur attendu (binaire) | valeur que l'on obtient (binaire) | channel |
+|------|-------------|--|
+|0b0000 0000|0b0000 0000|0|
+| 0b1111 1111  | 0b1111 1111 |1|
+| 0b0101 0011  | 0b0101 0011 |2|
+| 0b0000 0000  | 0b0000 0000 |3|
+| 0b0101 0011  | 0b0101 0011 |4|
+| 0b0000 0000  | 0b0000 0000 |5|
+| 0b1111 1111  | 0b1111 1111 |6|
+| 0b0000 0000  | 0b0000 0000 |7|
+| 0b0000 0000  | 0b0000 0000 |8|
+
+Comme on peut le voir dans les deux tableau ci-dessus, entre ce qui est attendu et ce qui est obtenu dans les mesures il n'y a pas d'erreur dans l'algorithme.
+On peut neanmoins remarqué que la mesure du module OPEN DMX n'est pas aussi propre que celle du DMX USB PRO car les deux modules generent le dmx differement.
+Dans un cas, nous avons le OPEN DMX qui ne sert que d'interface entre windows et les appareils DMX ce qui fait que windows doit faire toutes la generation des signaux. Etant donné que windows n'a pas été concu pour ca les timings du DMX ne sont pas respecté ce qui rend le signal impropre comparé au norme.
+Alors que dans l'autre, les données sont envoyer depuis windows vers un micro controleur dedié à la gestion d'une trame DMX en respectant tout les timings de la norme DMX.
 
