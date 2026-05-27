@@ -53,8 +53,10 @@ namespace projet_POBJ
         public static extern FT_STATUS FT_ResetDevice(uint ftHandle);
         [DllImport("FTD2XX.dll")]
         public static extern FT_STATUS FT_SetDivisor(uint ftHandle, char usDivisor);
+        [DllImport("FTD2XX.dll")]
+        public static extern FT_STATUS FT_GetDeviceInfo(uint ftHandle, ref FT_DEVICE lpftDevice, ref UInt32 lpdwID, byte[] lpSerialNumber, byte[] lpDescription, IntPtr dummy);
 
-
+        /*
         public static void start()
         {
             handle = 0;
@@ -62,6 +64,53 @@ namespace projet_POBJ
             Thread thread = new Thread(new ThreadStart(writeData));            
             thread.Start();
             setDmxValue(0, 0);  //Set DMX Start Code
+        }*/
+
+        public static string deviceDescription = "";
+
+        //----------------------------------------------------------------------------------//
+        //-- nom fct :  start()
+        //-- description : methode pour se connecter a l'open dmx et detecter en cas d'erreur si
+        //-- l'utilisateur n'essaye pas de start le open dmx avec un pro branché
+        //----------------------------------------------------------------------------------//
+        public static void start()
+        {
+            handle = 0;
+            status = FT_Open(0, ref handle);
+
+            if (status == FT_STATUS.FT_OK)
+            {
+                // --- BLOC DE DÉTECTION ---
+                UInt32 deviceID = 0;
+                FT_DEVICE deviceType = FT_DEVICE.FT_DEVICE_UNKNOWN;
+                byte[] serNum = new byte[16];
+                byte[] desc = new byte[64]; // C'est ici que le nom est stocké
+
+                status = FT_GetDeviceInfo(handle, ref deviceType, ref deviceID, serNum, desc, IntPtr.Zero);
+
+                if (status == FT_STATUS.FT_OK)
+                {
+                    // Convertit les octets reçus en texte (String)
+                    deviceDescription = System.Text.Encoding.ASCII.GetString(desc).TrimEnd('\0');
+
+                    if (deviceDescription.Contains("DMX USB PRO"))
+                    {
+                        FT_Close(handle); // On libère l'appareil
+                        handle = 0;
+                        status = FT_STATUS.FT_DEVICE_NOT_FOUND; // On simule une erreur
+                        Console.WriteLine("Start d'un OPEN DMX alors qu'un DMX USB PRO est detecter");
+                    }
+                    else
+                    {
+                        Console.WriteLine("connection reussi");
+                    }
+                }
+                // -------------------------
+
+                Thread thread = new Thread(new ThreadStart(writeData));
+                thread.Start();
+                setDmxValue(0, 0);
+            }
         }
 
         public static void setDmxValue(int channel, byte value)
@@ -74,24 +123,41 @@ namespace projet_POBJ
 
         public static void writeData()
         {
-            while (!done)
+            try
             {
                 initOpenDMX();
-                FT_SetBreakOn(handle);
-                FT_SetBreakOff(handle);
-                bytesWritten = write(handle, buffer, buffer.Length);
-                Thread.Sleep(20);
+                if (OpenDMX.status == FT_STATUS.FT_OK)
+                {
+                    status = FT_SetBreakOn(handle);
+                    status = FT_SetBreakOff(handle);
+                    bytesWritten = write(handle, buffer, buffer.Length);
+
+                    Thread.Sleep(25);      //give the system time to send the data before sending more 
+
+                }
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
             }
 
         }
 
         public static int write(uint handle, byte[] data, int length)
-  {
-            IntPtr ptr = Marshal.AllocHGlobal((int)length);
-            Marshal.Copy(data, 0, ptr, (int)length);
-            uint bytesWritten = 0;
-            status = FT_Write(handle, ptr, (uint)length, ref bytesWritten);
-            return (int)bytesWritten;
+        {
+            try
+            {
+                IntPtr ptr = Marshal.AllocHGlobal((int)length);
+                Marshal.Copy(data, 0, ptr, (int)length);
+                uint bytesWritten = 0;
+                status = FT_Write(handle, ptr, (uint)length, ref bytesWritten);
+                return (int)bytesWritten;
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp);
+                return 0;
+            }
         }
 
         public static void initOpenDMX()
@@ -103,6 +169,29 @@ namespace projet_POBJ
             status = FT_ClrRts(handle);
             status = FT_Purge(handle, PURGE_TX);
             status = FT_Purge(handle, PURGE_RX);
+        }
+
+        public static bool IsDeviceStillConnected()
+        {
+            // Si le handle est déjà à 0, c'est qu'on n'est pas connecté
+            if (handle == 0) return false;
+
+            uint modemStatus = 0;
+            // On tente de demander le statut du modem à la puce FTDI
+            // Si l'appareil est débranché, la fonction ne renverra pas FT_OK
+            status = FT_GetModemStatus(handle, ref modemStatus);
+
+            return (status == FT_STATUS.FT_OK);
+        }
+        public static void Stop()
+        {
+            done = true; // Arrête la boucle dans le thread (si tu en as ajouté une)
+            if (handle != 0)
+            {
+                FT_Close(handle);
+                handle = 0;
+                status = FT_STATUS.FT_DEVICE_NOT_FOUND; // On change le statut
+            }
         }
 
     }
@@ -131,5 +220,15 @@ namespace projet_POBJ
         FT_INVALID_ARGS,
         FT_OTHER_ERROR
     };
+    public enum FT_DEVICE : uint
+    {
+        FT_DEVICE_232BM = 0,
+        FT_DEVICE_232AM,
+        FT_DEVICE_100AX,
+        FT_DEVICE_UNKNOWN,
+        FT_DEVICE_2232C,
+        FT_DEVICE_232R,
+        // ... etc
+    }
 
 }

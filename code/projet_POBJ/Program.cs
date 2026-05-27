@@ -10,10 +10,11 @@ namespace projet_POBJ
     {
         public static List<Device_parameters> devices = new List<Device_parameters>();
         public static Project_Memory adress_memory = new Project_Memory();
-        /// <summary>
-        /// Point d'entrée principal de l'application.
-        /// </summary>
-        [STAThread]
+        public static EnttecProManager DMX_UBS_PRO = new EnttecProManager();
+    /// <summary>
+    /// Point d'entrée principal de l'application.
+    /// </summary>
+    [STAThread]
         static void Main()
         {
 
