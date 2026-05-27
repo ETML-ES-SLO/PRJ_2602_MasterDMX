@@ -281,7 +281,7 @@ void Dispose()
 ```
 
 
-# 👨‍💻 Auteur
+# Auteur
 Hayatache
 
 Projet développé en C# pour les deux controleurs ENTTEC DMX USB PRO et OPEN DMX.
