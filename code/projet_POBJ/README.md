@@ -1,10 +1,7 @@
-# 🎛️ DMX Controller Library (C#)
-
-Bibliothèque C# permettant de gérer des appareils DMX, la mémoire des adresses DMX ainsi que la communication avec une interface Enttec Pro via port série.
-
+Class1.CS
 ---
 
-# ✨ Fonctionnalités
+# Fonctionnalités
 
 - Gestion d'appareils DMX
 - Gestion des canaux et valeurs
@@ -16,9 +13,9 @@ Bibliothèque C# permettant de gérer des appareils DMX, la mémoire des adresse
 
 ---
 
-# 📦 Classes disponibles
+# Classes disponibles
 
-# 🔹 Device_parameters
+# Device_parameters
 
 Classe représentant un appareil DMX.
 
@@ -100,7 +97,7 @@ projector.Change_Channel_Value(255, 0, 0);
 
 ---
 
-# 🔹 Project_Memory
+# Project_Memory
 
 Classe permettant de gérer l'occupation des adresses DMX.
 
@@ -183,7 +180,7 @@ if(success)
 
 ---
 
-# 🔹 EnttecProManager
+# EnttecProManager
 
 Classe permettant la communication avec une interface Enttec Pro.
 
