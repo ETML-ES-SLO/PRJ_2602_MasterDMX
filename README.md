@@ -87,13 +87,14 @@ Ce projet supporte les interfaces suivantes :
 |------|-------------|
 | ![plot](./Mesure/Mesure_DMX.png) | ![plot](./Mesure/Mesure_OPEN_DMX.png)|
 
+Dans les deux cas, les informations contenu dans la trame sont en LSB first et doivent donc etre "inversé" 0101 0101 devient 1010 1010.
 
 | premiere page | deuxieme page     |
 |------|-------------|
 | ![plot](./Mesure/image_terminal_1.png)   | ![plot](./Mesure/image_terminal_2.png)    |
 #### Remarque
 comme on peut le voir, les trames presentes sur l'oscilloscope sont bien correct
-|--|DMX USB PRO|--|
+#### DMX USB PRO
 | valeur attendu (binaire) | valeur que l'on obtient (binaire) | channel |
 |------|-------------|--|
 |0b0000 0000|0b0000 0000|0|
@@ -106,7 +107,7 @@ comme on peut le voir, les trames presentes sur l'oscilloscope sont bien correct
 | 0b0000 0000  | 0b0000 0000 |7|
 | 0b0000 0000  | 0b0000 0000 |8|
 
-|--|OPEN DMX|--|
+#### OPEN DMX
 | valeur attendu (binaire) | valeur que l'on obtient (binaire) | channel |
 |------|-------------|--|
 |0b0000 0000|0b0000 0000|0|
