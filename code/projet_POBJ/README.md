@@ -284,4 +284,7 @@ void Dispose()
 # Auteur
 Hayatache
 
+# Aide pour ce projet 
+https://github.com/hansvana/DMXtable/blob/master/DMXserial.cs
+
 Projet développé en C# pour les deux controleurs ENTTEC DMX USB PRO et OPEN DMX.
